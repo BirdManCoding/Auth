@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import {registerUser, loginUser} from "../controllers/userController.js"
+import {registerUser, loginUser, logoutUser} from "../controllers/userController.js"
 import {userValidator} from "../middlewares/userValidation.js"
 
 const router = Router();
@@ -15,6 +15,10 @@ router.post("/register",userValidator ,registerUser)
 // @access  Public
 router.post("/login",userValidator ,loginUser)
 
+// @route   GET /api/users/logout
+// @desc    User Logout Route
+// @access  Public
+router.get("/logout" ,logoutUser)
 
 
 

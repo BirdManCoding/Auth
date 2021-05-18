@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken"
 
 import User from "../models/UserModel.js";
 import HttpError from "../models/HttpError.js";
@@ -20,6 +20,11 @@ export const registerUser = async (req, res, next) => {
         const createdUser = new User({email, passwordHash})
         createdUser.save();
 
+        const token = jwt.sign({
+            user: createdUser._id
+        }, process.env.JWT_SECRET)
+
+        res.cookie("token", token, {httpOnly: true})
         res.status(201).json({message: "user created"})
     }catch(err){
         next(new HttpError())
@@ -28,8 +33,31 @@ export const registerUser = async (req, res, next) => {
 
 export const loginUser = async (req, res, next) => {
     try {
-        res.status(201).json({message: "user login"})
+        const {email, password} = req.body;
+
+        const user = await User.findOne({email});
+        const correctPassword = await bcrypt.compare(password, user.passwordHash)
+
+        if(!correctPassword) return next(new HttpError("Wrong email or password", 401))
+
+
+        const token = jwt.sign({
+            user: user._id
+        }, process.env.JWT_SECRET)
+
+        res.cookie("token", token, {httpOnly: true})
+        res.status(201).json({message: "user loggedin"})
+
     }catch(err){
-        next(new HttpError())
+        next(new HttpError("Wrong email or password", 401))
+    }
+}
+
+export const logoutUser = async (req, res, next) => {
+    try {
+        res.cookie("token", "", { httpOnly: true, expires: new Date(0)})
+        res.json({message: "user logged out"})
+    }catch(err){
+        next(new HttpError("Wrong email or password", 401))
     }
 }
