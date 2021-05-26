@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const drawerWidth = 240;
 
 export default makeStyles(theme => { 
-  console.log(theme)
+ // console.log(theme)
   return{
   drawer: {
     width: drawerWidth,

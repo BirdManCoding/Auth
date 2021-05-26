@@ -1,32 +1,35 @@
-import React, {Fragment, useState} from 'react'
-import {AppBar} from "@material-ui/core"
-import MenuIcon from '@material-ui/icons/Menu'
+import React, {useReducer} from 'react'
 
-import Brand from './brand/Brand';
+import AppBar from "./appBar/Bar"
+
+
+
 import SideDrawer from "./sideDrawer/SideDrawer"
-import useStyles from "./styles"
 
+
+
+export const ToggleContext = React.createContext();
+
+const initialState = false
+const reducer = (state, action) => {
+    switch(action){
+        case "OPEN":
+            return true
+        case "CLOSE":
+            return false    
+        default: 
+            return state    
+    }
+}
 
 
 export default function Navbar() {
-    const classes = useStyles();
-    const [open, setOpen] = useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-      };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-      };
+    const [toggleState, dispatch] = useReducer(reducer, initialState)
 
     return (
-        <Fragment>
-            <AppBar position="static" className={classes.navbar}>
-                <Brand/>
-                <MenuIcon className={classes.navbar__menu} onClick={handleDrawerOpen}/>
-            </AppBar>
-            <SideDrawer onClick={handleDrawerClose} open={open}/>
-        </Fragment>
+        <ToggleContext.Provider value={{toggleState,  dispatch}}>
+            <AppBar/>
+            <SideDrawer />
+        </ToggleContext.Provider>
     )
 }

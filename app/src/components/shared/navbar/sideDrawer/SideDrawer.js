@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import ReactDOM from 'react-dom';
 import {Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, IconButton} from '@material-ui/core';
 import {NavLink} from "react-router-dom"
@@ -10,21 +10,23 @@ import Register from '@material-ui/icons/ExitToApp';
 import Blog from '@material-ui/icons/Book';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
+import {ToggleContext} from "../Navbar"
 import useStyles from "./styles"
 
-function SideDrawer(props) {
+function SideDrawer() {
     const classes = useStyles();
+    const toggleContext = useContext(ToggleContext);
     return (
         <Drawer
         className={classes.drawer}
         variant="persistent"
         anchor="right"
-        open={props.open}
+        open={toggleContext.toggleState}
         classes={{
           paper: classes.drawerPaper,
         }}>
             <div className={classes.drawer__Header}>
-                <IconButton onClick={props.onClick}>
+                <IconButton onClick={() => toggleContext.dispatch("CLOSE")}>
                     <ChevronRightIcon color="secondary" />
                 </IconButton>
             </div>
@@ -68,8 +70,8 @@ function SideDrawer(props) {
 }
 
 
-function SideDrawerModal(props){
-    return ReactDOM.createPortal(<SideDrawer onClick={props.onClick} open={props.open}/>, document.getElementById("side-drawer"))
+function SideDrawerModal(){
+    return ReactDOM.createPortal(<SideDrawer/>, document.getElementById("side-drawer"))
 }
 
 export default SideDrawerModal;
