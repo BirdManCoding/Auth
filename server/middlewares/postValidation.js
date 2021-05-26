@@ -2,7 +2,7 @@ import {check, validationResult} from 'express-validator'
 import HttpError from "../models/HttpError.js"
 
 
-export const userValidator = [
+export const postValidator = [
     check("title").isString().trim().notEmpty().isLength({min: 3, max: 25}),
     check("content").isString().trim().notEmpty().isLength({min: 10, max: 500}),
 

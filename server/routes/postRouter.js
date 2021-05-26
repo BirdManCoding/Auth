@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import {getPosts, createPost} from "../controllers/postController.js"
-import {userValidator} from "../middlewares/postValidation.js"
+import {postValidator} from "../middlewares/postValidation.js"
 import {isAuth} from "../middlewares/isAuth.js"
 
 const router = Router();
@@ -15,7 +15,7 @@ router.get("/", getPosts)
 // @route   post /api/posts
 // @desc    Create a new Blog Post
 // @access  Private
-router.post("/", userValidator, isAuth ,createPost)
+router.post("/", postValidator, isAuth ,createPost)
 
 
 
