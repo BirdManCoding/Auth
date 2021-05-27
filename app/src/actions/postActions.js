@@ -1,15 +1,13 @@
 import * as api from "../api/postApi";
 
-export const ACTION_TYPE = {
-    CREATE: "CREATE",
-    FETCH_ALL: "FETCH_ALL",
-}
+import {ACTION_POST_TYPES} from "./actionTypes"
 
-export const getPosts = () => async(dispatch) => {
+export const getPosts = () => async(dispatch, getState) => {
+    dispatch({type: ACTION_POST_TYPES.IS_LOADING});
     try{
         const {data} = await api.fetchPosts();
-        dispatch({type: ACTION_TYPE.FETCH_ALL, payload: data});
+        dispatch({type: ACTION_POST_TYPES.GET_ALL, payload: data});
     }catch(err){
-        console.log(err)
+        dispatch({type: ACTION_POST_TYPES.ERROR, payload: err});
     }
 }
