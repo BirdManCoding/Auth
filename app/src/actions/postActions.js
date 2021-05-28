@@ -12,6 +12,16 @@ export const getPosts = () => async(dispatch, getState) => {
     }
 }
 
+export const createPost = (post) => async(dispatch, getState) => {
+    dispatch({type: ACTION_POST_TYPES.IS_LOADING});
+    try{
+        const {data} = await api.createPost(post);
+        dispatch({type: ACTION_POST_TYPES.CREATE, payload: data});
+    }catch(err){
+        dispatch({type: ACTION_POST_TYPES.ERROR, payload: err});
+    }
+}
+
 export const resetPosts = () => async(dispatch, getState) => {
     dispatch({type: ACTION_POST_TYPES.RESET});
 }

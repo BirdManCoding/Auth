@@ -15,7 +15,7 @@ router.get("/", getPosts)
 // @route   post /api/posts
 // @desc    Create a new Blog Post
 // @access  Private
-router.post("/", postValidator, isAuth ,createPost)
+router.post("/", postValidator, isAuth, createPost)
 
 
 
