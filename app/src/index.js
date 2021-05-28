@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from "@material-ui/core/styles";
+import {BrowserRouter} from "react-router-dom"
 
 import {Provider} from "react-redux"
 import {createStore, applyMiddleware} from "redux"
@@ -28,7 +29,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>,

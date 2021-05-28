@@ -15,6 +15,8 @@ function postReducers(postState = initialState, action) {
             return {...postState, isLoading: true}  
         case ACTION_POST_TYPES.ERROR:
             return {...postState, error: action.payload, isLoading: false}          
+        case ACTION_POST_TYPES.RESET:
+            return {...initialState}              
         default: 
             return postState
     }

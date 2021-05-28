@@ -1,5 +1,5 @@
-import React from 'react'
-import {BrowserRouter, Switch, Route} from "react-router-dom"
+import React, {Fragment} from 'react'
+import { Switch, Route} from "react-router-dom"
 
 import Main from "./components/shared/containers/Main"
 import Navbar from "./components/shared/navbar/Navbar"
@@ -11,7 +11,7 @@ import Blog from "./components/blog/Blog"
 
 function Router() {
     return (
-        <BrowserRouter>
+        <Fragment>
             <Navbar/>
             <Main>
                 <Switch>
@@ -22,7 +22,7 @@ function Router() {
                     <Route path="/" component={Home}/>
                 </Switch>
             </Main>
-        </BrowserRouter>
+        </Fragment>
     )
 }
 

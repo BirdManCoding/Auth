@@ -11,3 +11,7 @@ export const getPosts = () => async(dispatch, getState) => {
         dispatch({type: ACTION_POST_TYPES.ERROR, payload: err});
     }
 }
+
+export const resetPosts = () => async(dispatch, getState) => {
+    dispatch({type: ACTION_POST_TYPES.RESET});
+}

@@ -8,7 +8,7 @@ export default function Brand() {
     return (
         <div className={classes.brand}>
             <img src={unicornBrand} alt="uni the unicorn" className={classes.brand__image}/>
-            <Typography variant="h4"  className={classes.brand__heading}>Uni the Unicorn</Typography >
+            <Typography variant="h4" component="strong"  className={classes.brand__heading}>Uni the Unicorn</Typography >
         </div>
     )
 }
