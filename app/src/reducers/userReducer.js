@@ -10,7 +10,9 @@ const initialState = {
 function postReducers(userState = initialState, action) {
     switch (action.type){
         case ACTION_USER_TYPES.REGISTER:
-            return {data: action.payload, isLoading: false, error: null}      
+            return {data: action.payload, isLoading: false, error: null}
+        case ACTION_USER_TYPES.LOGIN:
+            return {data: action.payload, isLoading: false, error: null}                
         case ACTION_USER_TYPES.IS_LOADING:
             return {...userState, isLoading: true}  
         case ACTION_USER_TYPES.ERROR:

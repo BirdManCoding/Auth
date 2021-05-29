@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Typography, TextField, Button} from "@material-ui/core";
 import {useDispatch} from "react-redux"
 
-
+import {login} from "../../../actions/userActions"
 import makeStyles from "./styles"
 
 export default function LoginForm() {
@@ -14,7 +14,7 @@ export default function LoginForm() {
     function submitHandler(e){
         e.preventDefault();
         //dont forget validation=P
-        console.log(email, password)
+        dispatch(login({email, password}))
         setEmail("")
         setPassword("")
     }
