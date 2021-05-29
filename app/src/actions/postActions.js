@@ -15,8 +15,11 @@ export const getPosts = () => async(dispatch, getState) => {
 export const createPost = (post) => async(dispatch, getState) => {
     dispatch({type: ACTION_POST_TYPES.IS_LOADING});
     try{
+        const prevState = getState().posts.data;
         const {data} = await api.createPost(post);
-        dispatch({type: ACTION_POST_TYPES.CREATE, payload: data});
+        console.log(data)
+        const newState = [...prevState, data.newPost]
+        dispatch({type: ACTION_POST_TYPES.CREATE, payload: newState});
     }catch(err){
         dispatch({type: ACTION_POST_TYPES.ERROR, payload: err});
     }

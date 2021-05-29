@@ -13,16 +13,16 @@ import {theme} from "./theme"
 import App from './App';
 import "./index.css"
 
-const myLoggerMiddleware = (store) => {
-  return (next) => {
-    return (action) => {
-      console.log({message: "jai middleware ran", action: action})
-      return next(action)
-    }
-  }
-}
+//const myLoggerMiddleware = (store) => {
+//  return (next) => {
+//    return (action) => {
+//      console.log({message: "jai middleware ran", action: action})
+//      return next(action)
+//    }
+//  }
+//}
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk, myLoggerMiddleware)))
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk, /*myLoggerMiddleware */)))
 
 
 ReactDOM.render(
