@@ -24,7 +24,7 @@ export default function PostForm() {
            <form autoComplete="off" noValidate onSubmit={submitHandler}>
                <Typography className={classes.postForm__heading} variant="h5">Create a BlogPost:</Typography>
                <TextField className={classes.postForm__field} name="title" variant="outlined" label="Title" fullWidth value={title} onChange={(e) => setTitle(e.target.value)}/>
-               <TextField className={classes.postForm__field} name="content" variant="outlined" label="Content" fullWidth value={content} onChange={(e) => setContent(e.target.value)}/>
+               <TextField className={classes.postForm__field} name="content" variant="outlined" label="Content" multiline rowsMax={4} fullWidth value={content} onChange={(e) => setContent(e.target.value)}/>
                <Button className={classes.postForm__btn} variant="contained" color="primary" type="submit">Create a BlogPost</Button>
            </form>
         </div>
