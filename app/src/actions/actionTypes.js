@@ -5,3 +5,10 @@ export const ACTION_POST_TYPES = {
     ERROR: "ERROR",
     RESET: "RESET",
 }
+
+export const ACTION_USER_TYPES = {
+    REGISTER: "REGISTER",
+    IS_LOADING: "IS_LOADING",
+    ERROR: "ERROR",
+    RESET: "RESET",
+}

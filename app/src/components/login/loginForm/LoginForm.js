@@ -22,7 +22,7 @@ export default function LoginForm() {
     return (
         <div className={classes.loginForm}>
            <form autoComplete="off" noValidate onSubmit={submitHandler}>
-               <Typography className={classes.loginForm__heading} variant="h5">Register:</Typography>
+               <Typography className={classes.loginForm__heading} variant="h5">Login:</Typography>
                <TextField className={classes.loginForm__field} name="email" variant="outlined" label="Email" fullWidth value={email} onChange={(e) => setEmail(e.target.value)}/>
                <TextField className={classes.loginForm__field} name="password" variant="outlined" label="Password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)}/>
                <Button className={classes.loginForm__btn} variant="contained" color="primary" type="submit">Login</Button>
