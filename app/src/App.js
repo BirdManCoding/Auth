@@ -5,6 +5,7 @@ import Router from "./Router"
 import { useDispatch} from "react-redux"
 
 import {getPosts} from "./actions/postActions"
+import {userIsLoggedIn} from "./actions/userActions"
 
 
 
@@ -13,6 +14,7 @@ function App() {
  
   useEffect(() => {
     dispatch(getPosts())
+    dispatch(userIsLoggedIn())
   }, [dispatch])
 
   return (

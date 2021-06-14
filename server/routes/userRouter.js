@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import {registerUser, loginUser, logoutUser} from "../controllers/userController.js"
+import {registerUser, loginUser, logoutUser, isLoggedIn} from "../controllers/userController.js"
 import {userValidator} from "../middlewares/userValidation.js"
 
 const router = Router();
@@ -19,6 +19,11 @@ router.post("/login",userValidator ,loginUser)
 // @desc    User Logout Route
 // @access  Public
 router.get("/logout" ,logoutUser)
+
+// @route   GET /api/users/loggedIn
+// @desc    Checks if user loggedIn
+// @access  Public
+router.get("/loggedIn" , isLoggedIn)
 
 
 

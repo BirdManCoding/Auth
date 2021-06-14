@@ -61,3 +61,18 @@ export const logoutUser = async (req, res, next) => {
         next(new HttpError("Wrong email or password", 401))
     }
 }
+
+export const isLoggedIn = async (req, res, next) => {
+    try{
+        const token = req.cookies.token;
+
+        const verified = jwt.verify(token, process.env.JWT_SECRET)
+
+        if(!token || !verified) return res.json(false)
+
+        res.json(true)
+
+    }catch(err){
+        res.json(false)
+    }
+}

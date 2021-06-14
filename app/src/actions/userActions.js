@@ -22,6 +22,28 @@ export const login = (userCredentials) => async(dispatch, getState) => {
     }
 }
 
+export const logout = () => async(dispatch, getState) => {
+    dispatch({type: ACTION_USER_TYPES.IS_LOADING});
+    try{
+        const {data} = await api.logoutUser();
+        console.log(data)
+        dispatch({type: ACTION_USER_TYPES.RESET});
+    }catch(err){
+        dispatch({type:  ACTION_USER_TYPES.ERROR, payload: err.response});
+    }
+}
+
 export const resetUser = () => async(dispatch, getState) => {
     dispatch({type: ACTION_USER_TYPES.RESET});
 }
+
+export const userIsLoggedIn = () => async(dispatch, getState) => {
+    dispatch({type: ACTION_USER_TYPES.IS_LOADING});
+    try{
+        const {data} = await api.isLoggedIn();
+        dispatch({type: ACTION_USER_TYPES.IS_LOGGEDIN, payload: data});
+    }catch(err){
+        dispatch({type: ACTION_USER_TYPES.IS_LOGGEDIN, payload: err});
+    }
+}
+

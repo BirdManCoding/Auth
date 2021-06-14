@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Typography, TextField, Button} from "@material-ui/core";
 import {useDispatch} from "react-redux"
+import {useHistory} from "react-router-dom"
 
 import {login} from "../../../actions/userActions"
 import makeStyles from "./styles"
@@ -11,12 +12,15 @@ export default function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const history = useHistory();
+
     function submitHandler(e){
         e.preventDefault();
         //dont forget validation=P
         dispatch(login({email, password}))
         setEmail("")
         setPassword("")
+        history.push("/dashboard")
     }
 
     return (
